@@ -1,11 +1,15 @@
-import type { LayoutProps } from "./Layout.types";
+import { Outlet } from "react-router-dom";
+import { Header } from "../Header/Header";
 
-export const Layout = ({ children }: LayoutProps) => {
+
+export const Layout = () => {
   return (
     <div>
-      {/* header */}
+      <Header />
 
-      <main>{children}</main>
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 };

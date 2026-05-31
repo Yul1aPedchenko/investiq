@@ -10,7 +10,7 @@ import type { AuthFormValues } from "../../types/auth";
 export const AuthPage = () => {
   const [mode, setMode] = useState<"login" | "register">("login");
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (values: AuthFormValues) => {
     try {
@@ -33,10 +33,14 @@ export const AuthPage = () => {
         ).unwrap();
       }
 
-      // navigate("/dashboard");
+      navigate("/dashboard");
     } catch (error) {
       console.error(error);
     }
   };
-  return <AuthForm mode={mode} onModeChange={setMode} onSubmit={handleSubmit} />;
+  return (
+    <>
+      <AuthForm mode={mode} onModeChange={setMode} onSubmit={handleSubmit} />;
+    </>
+  );
 };

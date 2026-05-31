@@ -1,0 +1,40 @@
+@import "/src/sass//utils/mixins.scss";
+@import "/src/sass//utils/variables.scss";
+
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  &__logo {
+    width: 99px;
+  }
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  &__avatar {
+    border-radius: 100%;
+    width: 32px;
+    height: 32px;
+    background-color: $secondaryBgColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__username {
+    display: none;
+    color: $mainTextColor;
+    @include tab() {
+      display: block;
+    }
+  }
+  &__btn {
+    background-color: transparent;
+  }
+  &__icon {
+    width: 16px;
+    height: 16px;
+    stroke-width: 1px;
+    stroke: $iconColor;
+  }
+}

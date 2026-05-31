@@ -1,0 +1,41 @@
+input,
+button {
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-family: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+input {
+  cursor: text;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+a {
+  margin: 0;
+}
+
+address {
+  font-style: normal;
+}
+
+img, svg {
+  display: block;
+  width: 100%;
+}

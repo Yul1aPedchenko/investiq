@@ -2,6 +2,22 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authApi } from "../../services/authApi";
 import type { LoginData, RegisterData, AuthResponse } from "./types";
 
+export const getCurrentUser = createAsyncThunk("auth/current", async (_, thunkAPI) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const r = await authApi.get("/auth/current", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return r.data;
+  } catch (error: any) {
+    return thunkAPI.rejectWithValue(error.response?.data?.message);
+  }
+});
+
 export const registerUser = createAsyncThunk<AuthResponse, RegisterData, { rejectValue: string }>("auth/register", async (credentials, thunkAPI) => {
   try {
     const { data } = await authApi.post<AuthResponse>("/auth/register", credentials);

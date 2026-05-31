@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { loginUser, registerUser } from "./authOperations";
+import { loginUser, registerUser, getCurrentUser } from "./authOperations";
 
 import type { AuthState } from "./types";
 
@@ -41,7 +41,6 @@ const authSlice = createSlice({
         state.error = action.payload ?? "Registration failed";
       })
 
-
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -56,6 +55,22 @@ const authSlice = createSlice({
         state.isLoading = false;
 
         state.error = action.payload ?? "Login failed";
+      })
+
+      .addCase(getCurrentUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+      })
+      .addCase(getCurrentUser.rejected, (state) => {
+        state.isLoading = false;
+
+        state.user = null;
+        state.token = null;
+
+        localStorage.removeItem("token");
       });
   },
 });
