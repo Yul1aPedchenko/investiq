@@ -1,0 +1,50 @@
+@import "/src/sass//utils/mixins.scss";
+@import "/src/sass//utils/variables.scss";
+
+.auth {
+  background-image: url("/src//assets/authBg/mob.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 60px 0 75px 0;
+  @include tab() {
+    padding: 60px 0 195px 0;
+    background-image: url("/src//assets/authBg/tab.png");
+  }
+  @include desk() {
+    background-image: url("/src//assets/authBg/desk.png");
+     padding: 120px 0 145px 0;
+  }
+  &__wrap {
+    @include desk() {
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__logo {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 45px;
+  }
+  &__logoText {
+    font-weight: 900;
+    font-size: 64px;
+    @include tab() {
+      font-size: 102px;
+    }
+  }
+  &__logoSubtext {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: $mainTextColor;
+    margin-left: 21px;
+    @include tab() {
+      font-size: 16px;
+      letter-spacing: 0.18em;
+      margin-left: 60px;
+    }
+  }
+}

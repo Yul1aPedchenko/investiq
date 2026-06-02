@@ -1,0 +1,77 @@
+@import "/src/sass//utils/mixins.scss";
+@import "/src/sass//utils/variables.scss";
+
+.form {
+  background-color: $mainBgColor;
+  padding: 40px 15px;
+  box-shadow: 5px 10px 20px 0 rgba(170, 178, 197, 0.4);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  @include tab() {
+    width: 266px;
+    padding: 50px 85px;
+  }
+  &__text {
+    color: $mainTextColor;
+    text-align: center;
+    margin-bottom: 20px;
+    @include tab() {
+      text-align: start;
+    }
+  }
+  &__btn {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 11px 30px 11px 20px;
+    border-radius: 26px;
+    background-color: $inputColor;
+    margin: 0 auto;
+    box-shadow: 1px 2px 3px 0 rgba(170, 178, 197, 0.2);
+    margin-bottom: 30px;
+  }
+  &__icon {
+    height: 18px;
+  }
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  &__input {
+    background-color: $inputColor;
+    padding: 17px 20px;
+    min-width: 213px;
+    border-radius: 30px;
+    @include tab() {
+      width: 265px;
+    }
+    &::placeholder {
+        font-size: 14px;
+    }
+  }
+  &__error {
+    color: $errorColor;
+  }
+  &__btns {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  &__btns .form__btn {
+    padding: 15px 0;
+    margin: 0;
+    width: 125px;
+    justify-content: center;
+    font-weight: 700;
+    color: $mainTextColor;
+  }
+  &__btn[type="submit"] {
+    background-color: $accentColor;
+    color: $mainBgColor;
+  }
+}

@@ -10,4 +10,5 @@ export interface AuthFormProps {
   mode: 'login' | 'register';
   onModeChange: (mode: 'login' | 'register') => void;
   onSubmit: (values: AuthFormValues) => Promise<void>;
+  error: string;
 }

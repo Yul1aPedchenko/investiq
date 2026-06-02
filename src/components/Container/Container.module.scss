@@ -5,12 +5,12 @@
   margin: 0 auto;
 
   @include mob() {
-    width: 320px;
+    width: 280px;
   }
   @include tab() {
-    width: 665px;
+    width: 728px;
   }
   @include desk() {
-    width: 1060px;
+    width: 1220px;
   }
 }

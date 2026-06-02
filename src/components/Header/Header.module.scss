@@ -3,7 +3,11 @@
 
 .header {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+   padding: 12px 20px;
+  @include desk() {
+    padding: 12px 30px;
+  }
   &__logo {
     width: 99px;
   }
