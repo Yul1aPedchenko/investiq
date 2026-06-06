@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { loginUser, registerUser, getCurrentUser } from "./authOperations";
+import { loginUser, registerUser, getCurrentUser, updateBalance } from "./authOperations";
 
 import type { AuthState } from "./types";
 
@@ -22,7 +22,6 @@ const authSlice = createSlice({
       localStorage.removeItem("token");
     },
   },
-
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
@@ -71,7 +70,11 @@ const authSlice = createSlice({
         state.token = null;
 
         localStorage.removeItem("token");
-      });
+      })
+
+      .addCase(updateBalance.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
   },
 });
 

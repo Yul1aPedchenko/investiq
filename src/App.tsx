@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { useAppDispatch } from "./redux/hooks";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { getCurrentUser } from "./redux/auth/authOperations";
+import { selectToken } from "./redux/auth/authSelectors";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -11,7 +12,7 @@ import { DashboardPage } from "./pages/DashboardPage/DashboardPage";
 import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
-  const token = localStorage.getItem("token");
+  const token = useAppSelector(selectToken)
   const dispatch = useAppDispatch();
 
   useEffect(() => {

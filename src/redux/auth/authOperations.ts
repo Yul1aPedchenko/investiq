@@ -39,3 +39,22 @@ export const loginUser = createAsyncThunk<AuthResponse, LoginData, { rejectValue
     return thunkAPI.rejectWithValue(error.response?.data?.message || "Login failed");
   }
 });
+
+export const updateBalance = createAsyncThunk("auth/updateBalance", async (balance: number, thunkAPI) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const r = await authApi.patch(
+      "users/balance",
+      { balance },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+    return r.data;
+  } catch (error: any) {
+    return thunkAPI.rejectWithValue(error?.response?.data?.message);
+  }
+});

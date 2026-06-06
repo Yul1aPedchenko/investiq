@@ -1,0 +1,11 @@
+@import "/src/sass//utils/mixins.scss";
+@import "/src/sass//utils/variables.scss";
+
+.balance {
+  &__title {
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: $mainTextColor;
+  }
+}
