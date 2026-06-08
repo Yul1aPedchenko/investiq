@@ -7,6 +7,8 @@ import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 
 import { Container } from "../../components/Container/Container";
 import { BalanceHint } from "../../components/BalanceHint/BalanceHint";
+import { TransactionForm } from "../../components/TransactionForm/TransactionForm";
+import { TransactionList } from "../../components/TransactionList/TransactionList";
 
 import styles from './DashboardPage.module.scss';
 
@@ -38,6 +40,8 @@ export const DashboardPage = () => {
         </Formik>
       </Container>
       {user.balance === 0 && <BalanceHint />}
+      <TransactionForm />
+      <TransactionList />
     </section>
   );
 };
