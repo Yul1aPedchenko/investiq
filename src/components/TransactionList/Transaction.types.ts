@@ -6,3 +6,7 @@ export interface Transaction {
   amount: number;
   date: string;
 }
+
+export interface TransactionListProps {
+  type: "expense" | "income";
+}

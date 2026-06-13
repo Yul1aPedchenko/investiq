@@ -1,0 +1,42 @@
+@import "/src/sass//utils/mixins.scss";
+@import "/src/sass//utils/variables.scss";
+
+.transactions {
+  display: flex;
+  flex-direction: column;
+  &__item {
+    display: flex;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $secondaryBgColor;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__wrap {
+    display: flex;
+    align-items: end;
+    gap: 20px;
+  }
+  &__subwrap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  &__date {
+    order: 1;
+    font-size: 8px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $mainTextColor;
+  }
+  &__desc {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: $mainTextColor;
+  }
+  &__category {
+    font-size: 8px;
+    letter-spacing: 0.04em;
+    color: $mainTextColor;
+  }
+}

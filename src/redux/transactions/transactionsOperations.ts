@@ -7,7 +7,7 @@ import type { TransactionFormValues } from "../../components/TransactionForm/Tra
 export const getTransactions = createAsyncThunk("transactions/getAll", async (_, thunkAPI) => {
   try {
     const token = localStorage.getItem("token");
-    
+
     const r = await authApi.get("/transactions", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -38,7 +38,12 @@ export const addTransaction = createAsyncThunk("transactions/add", async (transa
 
 export const deleteTransaction = createAsyncThunk("transactions/delete", async (id: string, thunkAPI) => {
   try {
-    await authApi.delete(`/transactions/${id}`);
+    const token = localStorage.getItem("token");
+    await authApi.delete(`/transactions/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return id;
   } catch (error: any) {

@@ -1,16 +1,17 @@
 import { Formik, Form, Field } from "formik";
 
+import { getCurrentUser } from "../../redux/auth/authOperations";
 import { addTransaction } from "../../redux/transactions/transactionsOperations";
 import { useAppDispatch } from "../../redux/hooks";
 
-import type { TransactionFormValues } from "./TransactionForm.types";
+import type { TransactionFormValues, TransactionFormProps } from "./TransactionForm.types";
 import { expenseCategories, incomeCategories } from "./categories";
 
-export const TransactionForm = () => {
+export const TransactionForm = ({ transactionType, setTransactionType }: TransactionFormProps) => {
   const dispatch = useAppDispatch();
 
   const initialValues: TransactionFormValues = {
-    type: "expense",
+    type: transactionType,
     description: "",
     category: "",
     amount: "",
@@ -23,8 +24,8 @@ export const TransactionForm = () => {
         initialValues={initialValues}
         onSubmit={async (values, { resetForm }) => {
           try {
-            await dispatch(addTransaction(values)).unwrap();
-
+            await dispatch(addTransaction({ ...values, type: transactionType })).unwrap();
+            await dispatch(getCurrentUser()).unwrap();
             resetForm({
               values: initialValues,
             });
@@ -33,35 +34,36 @@ export const TransactionForm = () => {
           }
         }}
       >
-        {({ values }) => (
-          <Form>
-            <div>
-              <label>
-                <Field type="radio" name="type" value="expense" />
-                Витрата
-              </label>
-              <label>
-                <Field type="radio" name="type" value="income" />
-                Дохід
-              </label>
-            </div>
+        <Form>
+          <div>
+            <label>
+              <Field type="radio" checked={transactionType === "expense"} onChange={() => setTransactionType("expense")} />
+              Витрата
+            </label>
 
-            <Field name="description" placeholder="Опис" required />
-            <Field as="select" name="category" required>
-              <option value="" disabled>Оберіть категорію</option>
+            <label>
+              <Field type="radio" checked={transactionType === "income"} onChange={() => setTransactionType("income")} />
+              Дохід
+            </label>
+          </div>
 
-              {(values.type === "expense" ? expenseCategories : incomeCategories).map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </Field>
-            <Field name="amount" type="number" placeholder="Сума" min="0.01" step="0.01" required />
-            <Field name="date" type="date" required />
+          <Field name="description" placeholder="Опис" required />
+          <Field as="select" name="category" required>
+            <option value="" disabled>
+              Оберіть категорію
+            </option>
 
-            <button type="submit">Додати</button>
-          </Form>
-        )}
+            {(transactionType === "expense" ? expenseCategories : incomeCategories).map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </Field>
+          <Field name="amount" type="number" placeholder="Сума" min="0.01" step="0.01" required />
+          <Field name="date" type="date" required />
+
+          <button type="submit">Додати</button>
+        </Form>
       </Formik>
     </div>
   );
