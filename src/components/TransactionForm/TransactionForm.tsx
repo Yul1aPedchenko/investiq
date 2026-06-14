@@ -7,7 +7,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import type { TransactionFormValues, TransactionFormProps } from "./TransactionForm.types";
 import { expenseCategories, incomeCategories } from "./categories";
 
-export const TransactionForm = ({ transactionType, setTransactionType }: TransactionFormProps) => {
+export const TransactionForm = ({ transactionType }: TransactionFormProps) => {
   const dispatch = useAppDispatch();
 
   const initialValues: TransactionFormValues = {
@@ -35,18 +35,6 @@ export const TransactionForm = ({ transactionType, setTransactionType }: Transac
         }}
       >
         <Form>
-          <div>
-            <label>
-              <Field type="radio" checked={transactionType === "expense"} onChange={() => setTransactionType("expense")} />
-              Витрата
-            </label>
-
-            <label>
-              <Field type="radio" checked={transactionType === "income"} onChange={() => setTransactionType("income")} />
-              Дохід
-            </label>
-          </div>
-
           <Field name="description" placeholder="Опис" required />
           <Field as="select" name="category" required>
             <option value="" disabled>

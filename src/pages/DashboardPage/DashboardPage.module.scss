@@ -1,11 +1,38 @@
 @import "/src/sass//utils/mixins.scss";
 @import "/src/sass//utils/variables.scss";
 
+.dashboard {
+  background-image: url("../../assets/mainBg/mob.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 95vh;
+  @include tab() {
+    background-image: url("../../assets/mainBg/tab.png");
+  }
+  @include desk() {
+    background-image: url("../../assets/mainBg/desk.png");
+  }
+  &__el {
+    @include tab() {
+      background-color: $mainBgColor;
+      box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
+      border-radius: 0 30px 30px 30px;
+      padding: 30px;
+    }
+  }
+}
 .balance {
   &__title {
     font-weight: 500;
     font-size: 12px;
     letter-spacing: 0.02em;
     color: $mainTextColor;
+    margin-bottom: 10px;
+    text-align: center;
   }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
 }

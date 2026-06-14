@@ -1,6 +1,6 @@
 export interface TransactionFormProps {
   transactionType: "expense" | "income";
-  setTransactionType: React.Dispatch<React.SetStateAction< "expense" | "income">>
+  // setTransactionType: React.Dispatch<React.SetStateAction< "expense" | "income">>
 }
 
 export interface TransactionFormValues {

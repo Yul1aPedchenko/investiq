@@ -8,6 +8,7 @@ import { useState } from "react";
 
 import { Container } from "../../components/Container/Container";
 import { BalanceHint } from "../../components/BalanceHint/BalanceHint";
+import { TransactionTypeSwitcher } from "../../components/TransactionTypeSwitcher/TransactionTypeSwitcher";
 import { TransactionForm } from "../../components/TransactionForm/TransactionForm";
 import { TransactionList } from "../../components/TransactionList/TransactionList";
 import { Summary } from "../../components/Summary/Summary";
@@ -23,31 +24,42 @@ export const DashboardPage = () => {
   if (!user) return null;
 
   return (
-    <section>
+    <section className={styles.dashboard}>
       <Container>
-        <Formik
-          enableReinitialize
-          initialValues={{
-            balance: user.balance,
-          }}
-          onSubmit={async (values) => {
-            await dispatch(updateBalance(Number(values.balance))).unwrap();
-          }}
-        >
-          <Form className={styles.balance}>
-            <label className={styles.balance__title}>Баланс:</label>
-            <div>
-              <Field name="balance" type="number" min="0" required />
-              <span>UAH</span>
+        <div className={styles.top}>
+          <Formik
+            enableReinitialize
+            initialValues={{
+              balance: user.balance,
+            }}
+            onSubmit={async (values) => {
+              await dispatch(updateBalance(Number(values.balance))).unwrap();
+            }}
+          >
+            <Form className={styles.balance}>
+              <label className={styles.balance__title}>Баланс:</label>
+              <div>
+                <Field name="balance" type="number" min="0" required />
+                <span>UAH</span>
+              </div>
+              <button type="submit" disabled={user.balance !== 0} title="Ви вже ввели поточний баланс">
+                Підтвердити
+              </button>
+            </Form>
+          </Formik>
+          {user.balance === 0 && <BalanceHint />}
+        </div>
+        <TransactionTypeSwitcher transactionType={transactionType} setTransactionType={setTransactionType} />
+        <div className={styles.dashboard__el}>
+          <div className={styles.content}>
+            <div className={styles.transactions}>
+              <TransactionForm transactionType={transactionType} />
+              <TransactionList type={transactionType} />
             </div>
-            <button type="submit">Підтвердити</button>
-          </Form>
-        </Formik>
+          </div>
+        </div>
+        <Summary />
       </Container>
-      {user.balance === 0 && <BalanceHint />}
-      <TransactionForm transactionType={transactionType} setTransactionType={setTransactionType} />
-      <TransactionList type={transactionType} />
-      <Summary />
     </section>
   );
 };

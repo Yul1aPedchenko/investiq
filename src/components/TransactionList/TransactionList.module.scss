@@ -4,22 +4,41 @@
 .transactions {
   display: flex;
   flex-direction: column;
+  padding: 0px 20px;
+  @include tab() {
+    padding: 0;
+    width: 605px;
+  }
   &__item {
     display: flex;
     padding-bottom: 12px;
     border-bottom: 1px solid $secondaryBgColor;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
+    @include tab() {
+      padding: 12px 20px;
+      margin-bottom: 0;
+      border: 1px solid $secondaryBgColor;
+      justify-content: normal;
+    }
   }
   &__wrap {
     display: flex;
     align-items: end;
     gap: 20px;
+    @include tab() {
+      align-items: center;
+    }
   }
   &__subwrap {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    @include tab() {
+      flex-direction: row;
+      gap: 20px;
+    }
   }
   &__date {
     order: 1;
@@ -27,16 +46,88 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: $mainTextColor;
+    @include tab() {
+      order: 0;
+      font-size: 12px;
+      min-width: 84px;
+    }
   }
   &__desc {
     font-weight: 700;
     font-size: 12px;
     letter-spacing: 0.04em;
     color: $mainTextColor;
+    @include tab() {
+      font-weight: 400;
+      min-width: 180px;
+    }
   }
   &__category {
     font-size: 8px;
     letter-spacing: 0.04em;
     color: $mainTextColor;
+    @include tab() {
+      font-size: 12px;
+      min-width: 108px;
+    }
+  }
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    div {
+      @include tab() {
+        min-width: 90px;
+      }
+    }
+  }
+  &__btn {
+    background-color: transparent;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+.income {
+  color: $incomeColor;
+}
+.expense {
+  color: $expenseColor;
+}
+
+.head {
+  display: none;
+  background-color: $secondaryBgColor;
+  padding: 12px 20px;
+  border-radius: 15px 15px 0 0;
+
+  span {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: $secondaryTextColor;
+  }
+  @include tab() {
+    display: flex;
+    gap: 20px;
+  }
+  &__date {
+    min-width: 84px;
+  }
+  &__desc {
+    min-width: 180px;
+  }
+  &__category {
+    min-width: 108px;
+  }
+  &__amount {
+    min-width: 90px;
   }
 }

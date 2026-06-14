@@ -5,6 +5,8 @@ import { useAppSelector } from "../../redux/hooks";
 
 import { monthNames } from "./month";
 
+import styles from './Summary.module.scss';
+
 export const Summary = () => {
   const transactions = useAppSelector(selectTransactions);
 
@@ -26,11 +28,11 @@ export const Summary = () => {
   }, [transactions]);
 
   return (
-    <div>
-      <h3>зведення</h3>
-      <ul>
+    <div className={styles.summary}>
+      <h3 className={styles.summary__title}>зведення</h3>
+      <ul className={styles.summary__list}>
         {summary.map(([month, amount]) => (
-          <li key={month}>
+          <li className={styles.summary__item} key={month}>
             <span>{month}</span>
 
             <span>

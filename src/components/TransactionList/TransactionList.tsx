@@ -34,6 +34,12 @@ export const TransactionList = ({ type }: TransactionListProps) => {
   const filteredTransactions = transactions.filter((transaction) => transaction.type === type);
   return (
     <ul className={styles.transactions}>
+      <li className={styles.head}>
+        <span className={styles.head__date}>Дата</span>
+        <span className={styles.head__desc}>Опис</span>
+        <span className={styles.head__category}>Категорія</span>
+        <span className={styles.head__amount}>Сума</span>
+      </li>
       {filteredTransactions.map((transaction) => (
         <li className={styles.transactions__item} key={transaction._id}>
           <div className={styles.transactions__wrap}>
@@ -43,12 +49,12 @@ export const TransactionList = ({ type }: TransactionListProps) => {
             </div>
             <div className={styles.transactions__category}>{transaction.category}</div>
           </div>
-          <div>
-            <div>
+          <div className={styles.transactions__wrapper}>
+            <div className={transaction.type === "income" ? styles.income : styles.expense}>
               {transaction.type === "income" ? "" : "-"} {transaction.amount} UAH
             </div>
 
-            <button onClick={() => handleDelete(transaction._id)}>
+            <button className={styles.transactions__btn} onClick={() => handleDelete(transaction._id)}>
               <RiDeleteBinLine />
             </button>
           </div>

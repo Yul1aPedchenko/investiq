@@ -1,0 +1,41 @@
+@import "/src/sass//utils/mixins.scss";
+@import "/src/sass//utils/variables.scss";
+
+.summary {
+  background-color: $secondaryBgColor;
+  width: 230px;
+  border-radius: 15px;
+  @include mob() {
+    display: none;
+  }
+  @include tab() {
+    display: block;
+  }
+  &__title {
+    font-size: 12px;
+    font-weight: 700;
+    color: $secondaryTextColor;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 12px 82px;
+    border-bottom: 2px solid $mainBgColor;
+  }
+  &__list {
+    min-height: 38px;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    span {
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: $mainTextColor;
+    }
+  }
+  &__item:not(:last-child) {
+    border-bottom: 2px solid $mainBgColor;
+  }
+}
