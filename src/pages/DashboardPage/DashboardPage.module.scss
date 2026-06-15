@@ -12,16 +12,21 @@
   @include desk() {
     background-image: url("../../assets/mainBg/desk.png");
   }
-  &__el {
+  &__in {
     @include tab() {
       background-color: $mainBgColor;
       box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
       border-radius: 0 30px 30px 30px;
       padding: 30px;
+      height: 626px;
+      width: 605px;
     }
   }
 }
 .balance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   &__title {
     font-weight: 500;
     font-size: 12px;
@@ -30,9 +35,68 @@
     margin-bottom: 10px;
     text-align: center;
   }
+  &__wrap {
+    display: flex;
+    justify-content: center;
+  }
+  &__balance {
+    padding: 0 17px 0 23px;
+    border: 1px solid $mainBgColor;
+    border-radius: 22px 0 0 22px;
+    width: 85px;
+    input {
+      width: 57px;
+      padding: 17px 0;
+      background-color: transparent;
+    }
+    input,
+    span {
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: $secondaryTextColor;
+    }
+  }
+  &__btn {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 15px 23px 15px 17px;
+    border: 1px solid $mainBgColor;
+    border-radius: 0 22px 22px 0;
+    background-color: $accentColor;
+    color: $mainBgColor;
+  }
+  &__btn:disabled {
+    background-color: transparent;
+    color: $secondaryTextColor;
+  }
+  &__count {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: $mainTextColor;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    order: -1;
+    margin-top: 30px;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
 
 .content {
   display: flex;
   flex-direction: column;
 }
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+

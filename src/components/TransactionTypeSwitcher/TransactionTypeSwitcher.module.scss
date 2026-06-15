@@ -1,0 +1,21 @@
+@import "/src/sass//utils/mixins.scss";
+@import "/src/sass//utils/variables.scss";
+
+.switcher {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  &__btn,
+  &__active {
+    padding: 20px;
+    width: 50%;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  &__active {
+    background-color: $accentColor;
+    color: $secondaryBgColor;
+  }
+}

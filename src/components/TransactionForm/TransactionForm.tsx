@@ -7,6 +7,8 @@ import { useAppDispatch } from "../../redux/hooks";
 import type { TransactionFormValues, TransactionFormProps } from "./TransactionForm.types";
 import { expenseCategories, incomeCategories } from "./categories";
 
+import styles from "./TransactionForm.module.scss";
+
 export const TransactionForm = ({ transactionType }: TransactionFormProps) => {
   const dispatch = useAppDispatch();
 
@@ -26,32 +28,45 @@ export const TransactionForm = ({ transactionType }: TransactionFormProps) => {
           try {
             await dispatch(addTransaction({ ...values, type: transactionType })).unwrap();
             await dispatch(getCurrentUser()).unwrap();
-            resetForm({
-              values: initialValues,
-            });
+
+            resetForm();
           } catch (error) {
             console.error(error);
           }
         }}
       >
-        <Form>
-          <Field name="description" placeholder="Опис" required />
-          <Field as="select" name="category" required>
-            <option value="" disabled>
-              Оберіть категорію
-            </option>
+        {({ resetForm }) => (
+          <Form className={styles.form__form}>
+            <Field className={styles.form__desc} name="description" placeholder="Опис товару" required />
 
-            {(transactionType === "expense" ? expenseCategories : incomeCategories).map((category) => (
-              <option key={category} value={category}>
-                {category}
+            <Field className={styles.form__category} as="select" name="category" required>
+              <option value="" disabled>
+                Категорія товару
               </option>
-            ))}
-          </Field>
-          <Field name="amount" type="number" placeholder="Сума" min="0.01" step="0.01" required />
-          <Field name="date" type="date" required />
 
-          <button type="submit">Додати</button>
-        </Form>
+              {(transactionType === "expense" ? expenseCategories : incomeCategories).map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </Field>
+
+            <div className={styles.form__wrap}>
+              <Field className={styles.form__amount} name="amount" type="number" placeholder="00.00 UAH" min="0.01" step="0.01" required />
+
+              <Field className={styles.form__date} name="date" type="date" required />
+            </div>
+            <div className={styles.form__btnWrap}>
+              <button className={styles.form__active} type="submit">
+                Ввести
+              </button>
+
+              <button className={styles.form__btn} type="button" onClick={() => resetForm()}>
+                Очистити
+              </button>
+            </div>
+          </Form>
+        )}
       </Formik>
     </div>
   );

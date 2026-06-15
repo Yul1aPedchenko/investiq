@@ -8,11 +8,11 @@ type Props = {
 export const TransactionTypeSwitcher = ({ transactionType, setTransactionType }: Props) => {
   return (
     <div className={styles.switcher}>
-      <button type="button" className={transactionType === "expense" ? styles.switcher__active : styles.switcher__button} onClick={() => setTransactionType("expense")}>
+      <button type="button" className={transactionType === "expense" ? styles.switcher__active : styles.switcher__btn} onClick={() => setTransactionType("expense")}>
         ВИТРАТИ
       </button>
 
-      <button type="button" className={transactionType === "income" ? styles.switcher__active : styles.switcher__button} onClick={() => setTransactionType("income")}>
+      <button type="button" className={transactionType === "income" ? styles.switcher__active : styles.switcher__btn} onClick={() => setTransactionType("income")}>
         ДОХІД
       </button>
     </div>
