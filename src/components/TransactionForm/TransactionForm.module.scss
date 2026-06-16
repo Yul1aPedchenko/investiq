@@ -5,39 +5,88 @@
   &__form {
     display: flex;
     flex-direction: column;
-    input, select {
-      font-weight: 400;
-      font-size: 12px;
-      letter-spacing: 0.02em;
-      background-color: transparent;
-      padding: 15px 20px;
-      border: 1px solid $mainBgColor;
-      color: $iconColor;
+  }
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    @include tab() {
+      flex-direction: row;
+    }
+  }
+  &__date,
+  &__desc,
+  &__category,
+  &__amount {
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    background-color: transparent;
+    padding: 15px 20px;
+    border: 1px solid $mainBgColor;
+    color: $iconColor;
+    @include tab() {
+      border: 1px solid $secondaryBgColor;
+    }
+  }
+  &__date {
+    border-radius: 22px;
+    margin-bottom: 10px;
+    @include tab() {
+      border: none;
+      padding: 0;
+      margin: 0;
+      margin-right: 15px;
     }
   }
   &__desc {
-    border-radius: 15px 15px 0 0 ;
+    border-radius: 15px 0 0 0;
   }
   &__category {
-    border-radius: 0 0 15px 15px  ;
+    border-radius: 0;
   }
-  &__wrap{
+  &__subwrap {
     display: flex;
     justify-content: center;
     margin-top: 30px;
+    @include tab() {
+      margin: 0;
+      border: 1px solid $secondaryBgColor;
+      border-radius: 0 15px 15px 0;
+      padding: 12px 20px;
+    }
   }
-  &__amount{
+  &__amount {
     padding: 15px 15px 15px 40px;
     width: 70px;
     border-radius: 22px 0 0 22px;
+    @include tab() {
+      border: none;
+      padding: 0;
+      width: 80px;
+      border: none;
+    }
   }
-  &__date {
+  &__icon {
+    padding: 12px 20px;
+    border: 1px solid $mainBgColor;
     border-radius: 0 22px 22px 0;
+    @include tab() {
+      padding: 0;
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
   &__btnWrap {
     display: flex;
     justify-content: space-between;
     margin-top: 80px;
+    @include tab() {
+      margin-top: 30px;
+      justify-content: center;
+      gap: 15px;
+    }
   }
   &__btn,
   &__active {

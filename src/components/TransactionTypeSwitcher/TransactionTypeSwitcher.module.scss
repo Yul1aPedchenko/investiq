@@ -2,9 +2,12 @@
 @import "/src/sass//utils/variables.scss";
 
 .switcher {
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  position: absolute;
+  @include tab() {
+    position: static;
+    width: auto;
+  }
   &__btn,
   &__active {
     padding: 20px;
@@ -13,9 +16,19 @@
     font-size: 12px;
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    @include tab() {
+      padding: 13px 42px;
+      width: auto;
+      background-color: $switcherColor;
+      border-radius: 15px 15px 0 0 ;
+    }
   }
   &__active {
     background-color: $accentColor;
     color: $secondaryBgColor;
+    @include tab() {
+      background-color: $activeSwitcherColor;
+      color: $accentColor;
+    }
   }
 }

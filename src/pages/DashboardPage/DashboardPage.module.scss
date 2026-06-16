@@ -5,12 +5,21 @@
   background-image: url("../../assets/mainBg/mob.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 95vh;
+  min-height: 90vh;
+  @include tab() {
+    padding-top: 40px;
+  }
   @include tab() {
     background-image: url("../../assets/mainBg/tab.png");
   }
   @include desk() {
     background-image: url("../../assets/mainBg/desk.png");
+  }
+  &__switcher {
+    display: none;
+    @include tab() {
+      display: flex;
+    }
   }
   &__in {
     @include tab() {
@@ -22,11 +31,32 @@
       width: 605px;
     }
   }
+  &__bottom {
+    @include tab() {
+      display: none;
+    }
+  }
+}
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  @include tab() {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+  }
 }
 .balance {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @include tab() {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
   &__title {
     font-weight: 500;
     font-size: 12px;
@@ -57,7 +87,8 @@
       color: $secondaryTextColor;
     }
   }
-  &__btn {
+  &__btn,
+  &__add {
     font-size: 12px;
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -70,6 +101,11 @@
   &__btn:disabled {
     background-color: transparent;
     color: $secondaryTextColor;
+  }
+  &__add {
+    @include tab() {
+      display: none;
+    }
   }
   &__count {
     font-size: 12px;
@@ -86,17 +122,37 @@
       width: 24px;
       height: 24px;
     }
+    @include tab(){
+      order: 1;
+      margin: 0;
+    }
+  }
+  &__add {
+    border-radius: 22px;
   }
 }
 
-.content {
+.transactions {
   display: flex;
   flex-direction: column;
+  &__btn {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    margin: 15px 0;
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: $accentColor;
+    }
+  }
+  &__form {
+    display: none;
+    @include tab() {
+      display: flex;
+    }
+  }
+  &__list {
+    display: none;
+  }
 }
-
-.top {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
