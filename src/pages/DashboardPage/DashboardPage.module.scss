@@ -8,17 +8,37 @@
   min-height: 90vh;
   @include tab() {
     padding-top: 40px;
-  }
-  @include tab() {
+    min-height: 100vh;
     background-image: url("../../assets/mainBg/tab.png");
   }
   @include desk() {
     background-image: url("../../assets/mainBg/desk.png");
   }
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+  }
+  &__subwrap {
+    margin: 0 auto;
+  }
   &__switcher {
     display: none;
     @include tab() {
       display: flex;
+    }
+  }
+  &__out {
+    position: relative;
+    @include desk() {
+      background-color: $mainBgColor;
+      box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
+      display: flex;
+      border-radius: 0 30px 30px 30px;
+      height: 579px;
+      width: 1060px;
+      justify-content: space-between;
+      padding: 35px 20px 60px 20px;
+      margin-bottom: 80px;
     }
   }
   &__in {
@@ -29,6 +49,16 @@
       padding: 30px;
       height: 626px;
       width: 605px;
+      margin-bottom: 40px;
+    }
+    @include desk() {
+      margin-bottom: 0;
+      background-color: transparent;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0;
+      height: auto;
+      width: auto;
     }
   }
   &__bottom {
@@ -40,12 +70,20 @@
 .top {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   gap: 40px;
+  position: relative;
   @include tab() {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     margin-bottom: 60px;
+    gap: 80px;
+    width: 665px;
+  }
+  @include desk(){
+    width: 1060px;
+    gap: 174px;
   }
 }
 .balance {
@@ -55,6 +93,7 @@
   @include tab() {
     flex-direction: row;
     align-items: center;
+    margin-left: 70px;
     gap: 20px;
   }
   &__title {
@@ -68,12 +107,18 @@
   &__wrap {
     display: flex;
     justify-content: center;
+    @include tab(){
+      gap: 15px;
+    }
   }
   &__balance {
     padding: 0 17px 0 23px;
     border: 1px solid $mainBgColor;
     border-radius: 22px 0 0 22px;
     width: 85px;
+    @include tab(){
+      border-radius: 22px;
+    }
     input {
       width: 57px;
       padding: 17px 0;
@@ -97,6 +142,9 @@
     border-radius: 0 22px 22px 0;
     background-color: $accentColor;
     color: $mainBgColor;
+    @include tab(){
+      border-radius: 22px;
+    }
   }
   &__btn:disabled {
     background-color: transparent;
@@ -122,7 +170,7 @@
       width: 24px;
       height: 24px;
     }
-    @include tab(){
+    @include tab() {
       order: 1;
       margin: 0;
     }

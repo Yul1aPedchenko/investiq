@@ -15,6 +15,9 @@
     padding: 0;
     width: 605px;
   }
+  @include desk(){
+    width: 760px;
+  }
   &__item {
     display: flex;
     padding-bottom: 12px;
@@ -36,6 +39,9 @@
     @include tab() {
       align-items: center;
     }
+    @include desk(){
+      gap: 70px;
+    }
   }
   &__subwrap {
     display: flex;
@@ -44,6 +50,9 @@
     @include tab() {
       flex-direction: row;
       gap: 20px;
+    }
+    @include desk(){
+      gap: 40px;
     }
   }
   &__date {
@@ -75,6 +84,10 @@
     @include tab() {
       font-size: 12px;
       min-width: 108px;
+    }
+    @include desk(){
+      min-width: 120px;
+      margin-right: 80px;
     }
   }
   &__wrapper {
@@ -124,14 +137,23 @@
     display: flex;
     gap: 20px;
   }
+  @include desk(){
+    gap: 40px;
+  }
   &__date {
     min-width: 84px;
   }
   &__desc {
     min-width: 180px;
+    @include desk(){
+      min-width: 205px;
+    }
   }
   &__category {
     min-width: 108px;
+    @include desk(){
+      min-width: 167px;
+    }
   }
   &__amount {
     min-width: 90px;

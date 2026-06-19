@@ -31,77 +31,79 @@ export const DashboardPage = () => {
   return (
     <section className={styles.dashboard}>
       <Container>
-        {!isAdd && (
-          <div className={styles.top}>
-            <Formik
-              enableReinitialize
-              initialValues={{
-                balance: user.balance,
-              }}
-              onSubmit={async (values) => {
-                await dispatch(updateBalance(Number(values.balance))).unwrap();
-              }}
-            >
-              <Form className={styles.balance}>
-                <label className={styles.balance__title}>Баланс:</label>
+        <div className={styles.dashboard__wrap}>
+          {!isAdd && (
+            <div className={styles.top}>
+              <Formik
+                enableReinitialize
+                initialValues={{
+                  balance: user.balance,
+                }}
+                onSubmit={async (values) => {
+                  await dispatch(updateBalance(Number(values.balance))).unwrap();
+                }}
+              >
+                <Form className={styles.balance}>
+                  <label className={styles.balance__title}>Баланс:</label>
 
-                <div className={styles.balance__wrap}>
-                  <div className={styles.balance__balance}>
-                    {user.balance !== 0 ? (
-                      <input
-                        type="text"
-                        value={Number(user.balance).toLocaleString("en-US", {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        })}
-                        disabled
-                      />
-                    ) : (
-                      <Field name="balance" type="number" min="0" required />
-                    )}
-                    <span>UAH</span>
+                  <div className={styles.balance__wrap}>
+                    <div className={styles.balance__balance}>
+                      {user.balance !== 0 ? (
+                        <input
+                          type="text"
+                          value={Number(user.balance).toLocaleString("en-US", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                          disabled
+                        />
+                      ) : (
+                        <Field name="balance" type="number" min="0" required />
+                      )}
+                      <span>UAH</span>
+                    </div>
+
+                    <button className={styles.balance__btn} type="submit" disabled={user.balance !== 0}>
+                      Підтвердити
+                    </button>
+                  </div>
+                </Form>
+              </Formik>
+
+              <button className={styles.balance__count}>
+                Перейти до розрахунків
+                <MdBarChart />
+              </button>
+
+              <button className={styles.balance__add} onClick={() => setIsAdd(true)}>
+                Додати
+              </button>
+
+              {user.balance === 0 && <BalanceHint />}
+            </div>
+          )}
+
+          <div className={styles.dashboard__subwrap}>
+            <div className={styles.dashboard__switcher}>
+              <TransactionTypeSwitcher transactionType={transactionType} setTransactionType={setTransactionType} />
+            </div>
+            <div className={styles.dashboard__out}>
+              <div className={styles.dashboard__in}>
+                <div className={styles.transactions}>
+                  {isAdd && (
+                    <button onClick={() => setIsAdd(false)} className={styles.transactions__btn}>
+                      <IoIosArrowRoundBack />
+                    </button>
+                  )}
+                  <div className={!isAdd ? styles.transactions__form : ""}>
+                    <TransactionForm transactionType={transactionType} />
                   </div>
 
-                  <button className={styles.balance__btn} type="submit" disabled={user.balance !== 0}>
-                    Підтвердити
-                  </button>
+                  {!isAdd && <TransactionList type={transactionType} />}
                 </div>
-              </Form>
-            </Formik>
-
-            <button className={styles.balance__count}>
-              Перейти до розрахунків
-              <MdBarChart />
-            </button>
-
-            <button className={styles.balance__add} onClick={() => setIsAdd(true)}>
-              Додати
-            </button>
-
-            {user.balance === 0 && <BalanceHint />}
-          </div>
-        )}
-
-        <div className={styles.dashboard__wrap}>
-          <div className={styles.dashboard__switcher}>
-            <TransactionTypeSwitcher transactionType={transactionType} setTransactionType={setTransactionType} />
-          </div>
-          <div className={styles.dashboard__out}>
-            <div className={styles.dashboard__in}>
-              <div className={styles.transactions}>
-                {isAdd && (
-                  <button onClick={() => setIsAdd(false)} className={styles.transactions__btn}>
-                    <IoIosArrowRoundBack />
-                  </button>
-                )}
-                <div className={!isAdd ? styles.transactions__form : ""}>
-                  <TransactionForm transactionType={transactionType} />
-                </div>
-
-                {!isAdd && <TransactionList type={transactionType} />}
               </div>
+              {!isAdd && <Summary />}
             </div>
-            {!isAdd && <Summary />}
           </div>
         </div>
       </Container>

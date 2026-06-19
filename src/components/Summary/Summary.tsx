@@ -5,7 +5,7 @@ import { useAppSelector } from "../../redux/hooks";
 
 import { monthNames } from "./month";
 
-import styles from './Summary.module.scss';
+import styles from "./Summary.module.scss";
 
 export const Summary = () => {
   const transactions = useAppSelector(selectTransactions);
@@ -29,22 +29,26 @@ export const Summary = () => {
 
   return (
     <div className={styles.summary}>
-      <h3 className={styles.summary__title}>зведення</h3>
+      <h3 className={styles.summary__title}>Зведення</h3>
+
       <ul className={styles.summary__list}>
-        {summary.map(([month, amount]) => (
-          <li className={styles.summary__item} key={month}>
-            <span>{month}</span>
+        {summary.length === 0 ? (
+          <li className={styles.summary__item}>Немає даних для відображення</li>
+        ) : (
+          summary.map(([month, amount]) => (
+            <li className={styles.summary__item} key={month}>
+              <span>{month}</span>
 
-            <span>
-              {amount > 0 ? "+" : ""}
-
-              {amount.toLocaleString("uk-UA", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
-            </span>
-          </li>
-        ))}
+              <span>
+                {amount > 0 ? "+" : ""}
+                {amount.toLocaleString("uk-UA", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );

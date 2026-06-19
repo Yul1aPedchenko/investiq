@@ -6,7 +6,17 @@
   max-width: 282px;
   padding: 25px;
   border-radius: 30px;
-  position: relative;
+  position: absolute;
+  z-index: 1;
+  top: 184px;
+  @include tab(){
+    top: 80px;
+    left: 80px;
+  }
+  @include desk(){
+    top: 70px;
+   left: 380px;
+  }
   &__arrow {
     position: absolute;
     top: -16px;

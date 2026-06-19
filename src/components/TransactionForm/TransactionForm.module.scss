@@ -5,6 +5,11 @@
   &__form {
     display: flex;
     flex-direction: column;
+    @include desk() {
+      flex-direction: row;
+      align-items: center;
+      gap: 25px;
+    }
   }
   &__wrap {
     display: flex;
@@ -40,9 +45,15 @@
   }
   &__desc {
     border-radius: 15px 0 0 0;
+    @include desk() {
+      width: 245px;
+    }
   }
   &__category {
     border-radius: 0;
+    @include desk() {
+      width: 188px;
+    }
   }
   &__subwrap {
     display: flex;
@@ -53,6 +64,9 @@
       border: 1px solid $secondaryBgColor;
       border-radius: 0 15px 15px 0;
       padding: 12px 20px;
+    }
+    @include desk() {
+      width: 124px;
     }
   }
   &__amount {
@@ -87,6 +101,9 @@
       justify-content: center;
       gap: 15px;
     }
+    @include desk() {
+      margin: 0;
+    }
   }
   &__btn,
   &__active {
@@ -96,14 +113,26 @@
     letter-spacing: 0.02em;
     text-transform: uppercase;
     border-radius: 16px;
+    @include tab() {
+      padding: 15px 30px;
+    }
   }
   &__active {
     box-shadow: 1px 3px 5px 0 rgba(255, 107, 8, 0.35);
     background-color: $accentColor;
     color: $secondaryBgColor;
+    @include tab() {
+      box-shadow: none;
+    }
   }
   &__btn {
     box-shadow: 1px 2px 5px 0 rgba(170, 178, 197, 0.4);
     background-color: $secondaryBgColor;
+    @include tab() {
+      background-color: transparent;
+      box-shadow: none;
+      color: $mainTextColor;
+      border: 2px solid $secondaryBgColor;
+    }
   }
 }
