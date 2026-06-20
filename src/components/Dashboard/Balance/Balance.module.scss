@@ -1,0 +1,66 @@
+@import "/src/sass//utils/mixins.scss";
+@import "/src/sass//utils/variables.scss";
+.balance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @include tab() {
+    flex-direction: row;
+    align-items: center;
+    margin-left: 70px;
+    gap: 20px;
+  }
+  &__title {
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: $mainTextColor;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  &__wrap {
+    display: flex;
+    justify-content: center;
+    @include tab(){
+      gap: 15px;
+    }
+  }
+  &__balance {
+    padding: 0 17px 0 23px;
+    border: 1px solid $mainBgColor;
+    border-radius: 22px 0 0 22px;
+    width: 85px;
+    @include tab(){
+      border-radius: 22px;
+    }
+    input {
+      width: 57px;
+      padding: 17px 0;
+      background-color: transparent;
+    }
+    input,
+    span {
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: $secondaryTextColor;
+    }
+  }
+  &__btn {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 15px 23px 15px 17px;
+    border: 1px solid $mainBgColor;
+    border-radius: 0 22px 22px 0;
+    background-color: $accentColor;
+    color: $mainBgColor;
+    @include tab(){
+      border-radius: 22px;
+    }
+  }
+  &__btn:disabled {
+    background-color: transparent;
+    color: $secondaryTextColor;
+  }
+}

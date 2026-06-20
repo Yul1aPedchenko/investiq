@@ -1,0 +1,14 @@
+@import "/src/sass//utils/mixins.scss";
+@import "/src/sass//utils/variables.scss";
+
+.statistics {
+    background-image: url('../../assets/mainBg/mob.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    @include tab(){
+        background-image: url('../../assets/mainBg/tab.png');
+    }
+    @include desk(){
+        background-image: url('../../assets/mainBg/desk.png');
+    }
+}
