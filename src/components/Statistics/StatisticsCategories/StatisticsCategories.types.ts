@@ -1,7 +1,7 @@
+import type { Transaction } from "../../../redux/transactions/types";
+
 export interface Props {
-  transactions: any[];
+  transactions: Transaction[];
 }
 
-export interface CategoriesMap {
-  [key: string]: number
-}
+export type CategoriesMap = Record<string, number>;

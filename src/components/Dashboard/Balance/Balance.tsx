@@ -6,7 +6,11 @@ import { selectUser } from "../../../redux/auth/authSelectors";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import styles from "./Balance.module.scss";
 
-export const Balance = () => {
+type BalanceProps = {
+  showBtn?: boolean;
+};
+
+export const Balance = ({ showBtn = true }: BalanceProps) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
 
@@ -41,9 +45,11 @@ export const Balance = () => {
             <span>UAH</span>
           </div>
 
-          <button className={styles.balance__btn} type="submit" disabled={user.balance !== 0}>
-            Підтвердити
-          </button>
+          {showBtn && (
+            <button className={styles.balance__btn} type="submit" disabled={user.balance !== 0}>
+              Підтвердити
+            </button>
+          )}
         </div>
       </Form>
     </Formik>

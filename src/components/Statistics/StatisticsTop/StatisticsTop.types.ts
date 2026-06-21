@@ -1,5 +1,10 @@
+import type { Transaction } from "../../../redux/transactions/types"; 
+
 export interface Props {
-  transactions: any[];
+  transactions: Transaction[];
   selectedDate: Date;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+  prevMonth: () => void;
+  nextMonth: () => void;
+  disablePrev: boolean;
+  disableNext: boolean;
 }

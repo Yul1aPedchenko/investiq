@@ -10,18 +10,20 @@ import type { Props } from "./StatisticsTop.types";
 
 import styles from "./StatisticsTop.module.scss";
 
-export const StatisticsTop = ({ transactions, selectedDate, setSelectedDate }: Props) => {
+export const StatisticsTop = ({ transactions, selectedDate, prevMonth, nextMonth, disablePrev, disableNext }: Props) => {
   const navigate = useNavigate();
 
   const expense = transactions.filter((t) => t.type === "expense").reduce((acc, t) => acc + t.amount, 0);
   const income = transactions.filter((t) => t.type === "income").reduce((acc, t) => acc + t.amount, 0);
 
-  const prevMonth = () => {
-    setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1));
-  };
-  const nextMonth = () => {
-    setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1));
-  };
+  const formattedDate = selectedDate
+    .toLocaleString("uk-UA", {
+      month: "long",
+      year: "numeric",
+    })
+    .replace(" р.", "")
+    .toUpperCase();
+
   return (
     <div className={styles.top}>
       <div className={styles.top__wrap}>
@@ -29,31 +31,33 @@ export const StatisticsTop = ({ transactions, selectedDate, setSelectedDate }: P
           <IoIosArrowRoundBack /> Повернутись на головну
         </button>
         <button onClick={() => navigate("/dashboard")} className={styles.top__btnMob}>
-          <IoIosArrowRoundBack /> 
+          <IoIosArrowRoundBack />
         </button>
-        <Balance />
-        <div>
-          <p>Поточний період</p>
-          <div>
-            <button onClick={prevMonth}>
+        <Balance showBtn={false}/>
+        <div className={styles.top__curPeriod}>
+          <p className={styles.top__subtitle}>Поточний період</p>
+          <div className={styles.top__sliderWrap}>
+            <button onClick={prevMonth} className={styles.top__sliderBtn} disabled={disablePrev}>
               <IoChevronBack />
             </button>
-            <span>
-              {selectedDate.toLocaleString("uk-UA", {
-                month: "long",
-                year: "numeric",
-              })}
+            <span className={styles.top__date}>
+              {formattedDate}
             </span>
-            <button onClick={nextMonth}>
+            <button onClick={nextMonth} className={styles.top__sliderBtn} disabled={disableNext}>
               <IoChevronForward />
             </button>
           </div>
         </div>
       </div>
 
-      <div>
-        <p>Витрати: - {expense} грн.</p>
-        <p>Доходи: + {income} грн.</p>
+      <div className={styles.top__wrapper}>
+        <p className={styles.top__expense}>
+          Витрати: <span>- {expense.toFixed(2)} грн.</span>
+        </p>
+        <div className={styles.top__line}></div>
+        <p className={styles.top__income}>
+          Доходи: <span>+ {income.toFixed(2)} грн.</span>
+        </p>
       </div>
     </div>
   );

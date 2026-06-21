@@ -2,22 +2,130 @@
 @import "/src/sass//utils/variables.scss";
 
 .top {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  @include tab(){
+    margin-bottom: 30px;
+  }
+  &__wrap {
     display: flex;
     flex-direction: column;
-    &__wrap {
-        display: flex;
-        background-color: red;
-        flex-direction: column;
+    @include tab(){
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
     }
-    &__btn {
-        display: none;
-        @include tab(){
-            display: block;
-        }
+  }
+  &__btn {
+    display: none;
+    @include tab() {
+      display: flex;
+      background-color: transparent;
+      align-items: center;
+      gap: 15px;
+      letter-spacing: 0.04em;
+      color: $mainTextColor;
+      svg {
+        width: 24px;
+        height: 24px;
+        fill: $accentColor;
+      }
     }
-    &__btnMob {
-        @include tab(){
-            display: none;
-        }
+  }
+  &__btnMob {
+    width: fit-content;
+    background-color: transparent;
+    order: -2;
+    margin-bottom: 15px;
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: $accentColor;
     }
+    @include tab() {
+      display: none;
+    }
+  }
+  &__curPeriod {
+    order: -1;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 20px;
+    @include tab() {
+      order: 1;
+      margin: 0;
+    }
+  }
+  &__subtitle {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: $mainTextColor;
+    margin-bottom: 10px;
+  }
+  &__sliderWrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+  }
+  &__sliderBtn {
+    background-color: transparent;
+    svg {
+      stroke: $accentColor;
+    }
+    &:disabled {
+      svg {
+        stroke: $mainTextColor;
+      }
+    }
+  }
+  &__date {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    width: 85px;
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 7px 20px;
+    box-shadow: 5px 10px 20px 0 rgba(170, 178, 197, 0.4);
+    background-color: $mainBgColor;
+    border-radius: 20px;
+    margin-top: 30px;
+    @include tab() {
+      justify-content: center;
+      gap: 20px;
+    }
+    p {
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: $mainTextColor;
+      gap: 5px;
+      @include tab(){
+        flex-direction: row;
+      }
+    }
+  }
+  &__expense span {
+    color: $expenseColor;
+  }
+  &__line {
+    height: 60px;
+    width: 1px;
+    background-color: #e0e5eb;
+    @include tab() {
+      height: 36px;
+    }
+  }
+  &__income span {
+    color: $incomeColor;
+  }
 }
