@@ -3,7 +3,7 @@ import axios from "axios";
 import type { RegisterData } from "./authApi.types";
 
 export const authApi = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://investiq-server.onrender.com",
 });
 
 export const registerRequest = async (data: RegisterData) => {
