@@ -1,6 +1,12 @@
 @import "/src/sass//utils/mixins.scss";
 @import "/src/sass//utils/variables.scss";
 
+.mainwrap{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 30px;
+}
 .wrap {
   @include tab() {
     background-color: $mainBgColor;
@@ -8,6 +14,10 @@
     padding-top: 20px;
     border-radius: 30px;
     width: 666px;
+    box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
+  }
+  @include desk(){
+    width: 1160px;
   }
 }
 
@@ -28,17 +38,27 @@
 .categories {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 15px;
+  justify-content: center;
+  gap: 20px;
+  @include desk(){
+    width: 613px;
+    margin: 0 auto;
+  }
   &__item {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: transparent;
     gap: 8px;
+    width: 80px;
+
     img {
       width: 56px;
       height: 56px;
+      background-image: url("../../../assets/categoriesIcons/bg.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
     }
   }
   &__amount {
@@ -48,5 +68,14 @@
   &__title {
     letter-spacing: 0.02em;
     text-transform: uppercase;
+  }
+  &__active {
+    img {
+        svg{
+             fill: $accentColor;
+        }
+       
+        background-image: url("../../../assets/categoriesIcons/bg-active.png");
+    }
   }
 }

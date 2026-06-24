@@ -55,6 +55,21 @@
       width: 188px;
     }
   }
+  &__category {
+    color: #52555f;
+  }
+
+  &__category option {
+    padding: 12px;
+    background-color: #fff;
+    color: #52555f;
+  }
+
+  &category option:checked {
+    background-color: #f5f6fb;
+    color: #52555f;
+    font-weight: 700;
+  }
   &__subwrap {
     display: flex;
     justify-content: center;

@@ -1,0 +1,53 @@
+@import "/src/sass//utils/mixins.scss";
+@import "/src/sass//utils/variables.scss";
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.modal {
+  width: 320px;
+  padding: 24px;
+  margin: 0 20px;
+  border-radius: 20px;
+  background: #fff;
+  text-align: center;
+  h3 {
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: $mainTextColor;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+.confirm,
+.cancel {
+  border-radius: 16px;
+  padding: 15px 50px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.confirm {
+  background-color: $accentColor;
+  color: $mainBgColor;
+}
+.cancel {
+  background-color: transparent;
+  outline: 2px solid $secondaryBgColor;
+}

@@ -1,0 +1,13 @@
+@import "/src/sass//utils/mixins.scss";
+@import "/src/sass//utils/variables.scss";
+
+.empty {
+    text-align: center;
+}
+.chart {
+    height: auto;
+    @include desk(){
+        width: 700px;
+        margin: 0 auto;
+    }
+}

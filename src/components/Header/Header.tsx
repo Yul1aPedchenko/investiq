@@ -7,6 +7,9 @@ import { selectUser, selectToken } from "../../redux/auth/authSelectors";
 import logo from "../../assets/logo.svg";
 import { RxExit } from "react-icons/rx";
 
+import { useState } from "react";
+import { ConfirmModal } from "../ConfirmModal/ConfirmModal";
+
 import styles from "./Header.module.scss";
 
 export const Header = () => {
@@ -17,6 +20,8 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const firstLetter = user?.name?.charAt(0).toUpperCase() ?? "";
+
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -31,11 +36,20 @@ export const Header = () => {
           <div className={styles.header__avatar}>{firstLetter}</div>
           <span className={styles.header__username}>{user.name}</span>
 
-          <button className={styles.header__btn} onClick={handleLogout}>
+          <button className={styles.header__btn} onClick={() => setIsLogoutModalOpen(true)}>
             <RxExit className={styles.header__icon} />
           </button>
         </div>
       )}
+      <ConfirmModal
+        isOpen={isLogoutModalOpen}
+        title="Ви дійсно хочете вийти?"
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={() => {
+          handleLogout();
+          setIsLogoutModalOpen(false);
+        }}
+      />
     </header>
   );
 };
