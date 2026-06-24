@@ -38,40 +38,41 @@ export const TransactionList = ({ type }: TransactionListProps) => {
   const filteredTransactions = transactions.filter((transaction) => transaction.type === type);
   return (
     <>
-      <ul className={styles.transactions}>
-        <li className={styles.head}>
+      <div className={styles.transactions}>
+        <div className={styles.head}>
           <span className={styles.head__date}>Дата</span>
           <span className={styles.head__desc}>Опис</span>
           <span className={styles.head__category}>Категорія</span>
           <span className={styles.head__amount}>Сума</span>
-        </li>
-
-        {filteredTransactions.length === 0 ? (
-          <li className={styles.transactions__item}>Транзакцій поки немає</li>
-        ) : (
-          filteredTransactions.map((transaction) => (
-            <li className={styles.transactions__item} key={transaction._id}>
-              <div className={styles.transactions__wrap}>
-                <div className={styles.transactions__subwrap}>
-                  <div className={styles.transactions__date}>{new Date(transaction.date).toLocaleDateString()}</div>
-                  <div className={styles.transactions__desc}>{transaction.description}</div>
-                </div>
-                <div className={styles.transactions__category}>{transaction.category}</div>
-              </div>
-
-              <div className={styles.transactions__wrapper}>
-                <div className={transaction.type === "income" ? styles.income : styles.expense}>
-                  {transaction.type === "income" ? "" : "-"} {transaction.amount} UAH
+        </div>
+        <ul className={styles.transactions__list}>
+          {filteredTransactions.length === 0 ? (
+            <li className={styles.transactions__item}>Транзакцій поки немає</li>
+          ) : (
+            filteredTransactions.map((transaction) => (
+              <li className={styles.transactions__item} key={transaction._id}>
+                <div className={styles.transactions__wrap}>
+                  <div className={styles.transactions__subwrap}>
+                    <div className={styles.transactions__date}>{new Date(transaction.date).toLocaleDateString()}</div>
+                    <div className={styles.transactions__desc}>{transaction.description}</div>
+                  </div>
+                  <div className={styles.transactions__category}>{transaction.category}</div>
                 </div>
 
-                <button className={styles.transactions__btn} onClick={() => setTransactionToDelete(transaction._id)}>
-                  <RiDeleteBinLine />
-                </button>
-              </div>
-            </li>
-          ))
-        )}
-      </ul>
+                <div className={styles.transactions__wrapper}>
+                  <div className={transaction.type === "income" ? styles.income : styles.expense}>
+                    {transaction.type === "income" ? "" : "-"} {transaction.amount} UAH
+                  </div>
+
+                  <button className={styles.transactions__btn} onClick={() => setTransactionToDelete(transaction._id)}>
+                    <RiDeleteBinLine />
+                  </button>
+                </div>
+              </li>
+            ))
+          )}
+        </ul>
+      </div>
       <ConfirmModal
         isOpen={!!transactionToDelete}
         title="Ви впевнені?"

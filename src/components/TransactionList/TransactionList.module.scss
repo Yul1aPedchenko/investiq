@@ -10,19 +10,7 @@
   min-width: 280px;
   max-height: 200px;
   margin-top: 60px;
-  overflow: auto;
 
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-  &::-webkit-scrollbar-track {
-    background: $secondaryBgColor;
-    border-radius: 12px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: $accentColor;
-    border-radius: 12px;
-  }
   @include tab() {
     padding: 0;
     width: 605px;
@@ -31,6 +19,20 @@
   @include desk() {
     width: 760px;
     max-height: 382px;
+  }
+  &__list {
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: $secondaryBgColor;
+      border-radius: 12px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $accentColor;
+      border-radius: 12px;
+    }
   }
   &__item {
     display: flex;
