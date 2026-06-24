@@ -4,6 +4,7 @@
 .switcher {
   width: 100%;
   position: absolute;
+  bottom: 0;
   @include tab() {
     position: static;
     width: auto;
