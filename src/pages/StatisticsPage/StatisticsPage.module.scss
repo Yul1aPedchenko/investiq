@@ -6,6 +6,7 @@
     background-image: url('../../assets/mainBg/mob.png');
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 100vh;
     @include tab(){
         background-image: url('../../assets/mainBg/tab.png');
     }
